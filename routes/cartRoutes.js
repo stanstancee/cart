@@ -3,7 +3,7 @@ const Cart = require('../Model/cartModel')
 
 function  cartRouter(){
 const cartRouter = express.Router()
-cartRouter.route('/Cart')
+cartRouter.route('/cart')
 .post(function(req,res){
 //create a new model
 const cart= new Cart(req.body);
@@ -35,8 +35,8 @@ if(!req.body.id){
         
     });
 });
-cartRouter.use('/Cart/:CartId', (req, res, next) => {
-  cart.findById(req.params.CartId, (err, foundCart) => {
+cartRouter.use('/card/:cartId', (req, res, next) => {
+Cart.findById(req.params.cartId, (err, foundCart) => {
         if (err) {
             return res.send(`You have an error ${err}`);
         }
@@ -47,7 +47,8 @@ cartRouter.use('/Cart/:CartId', (req, res, next) => {
         return res.sendStatus(404);
     })
 });
-cartRouter.route('/Cart/:CartId')
+
+cartRouter.route('/cart/:cartId')
     .get((req, res) =>{ 
         const returnCart = req.foundCart.toJSON();
    
