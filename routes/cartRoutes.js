@@ -35,7 +35,7 @@ if(!req.body.id){
         
     });
 });
-cartRouter.use('/card/:cartId', (req, res, next) => {
+cartRouter.use('/cart/:cartId', (req, res, next) => {
 Cart.findById(req.params.cartId, (err, foundCart) => {
         if (err) {
             return res.send(`You have an error ${err}`);
