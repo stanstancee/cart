@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose ;
 //create new schema
 const cartModel = new Schema({
-    id:{type:Number},
+    user:{type:String},
     title:{type:String},
     price:{type:Number},
     category:{type:String},

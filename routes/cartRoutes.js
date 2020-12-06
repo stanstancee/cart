@@ -8,9 +8,9 @@ cartRouter.route('/cart')
 //create a new model
 const cart= new Cart(req.body);
 // check if id is included which is required
-if(!req.body.id){
+if(!req.body.user){
     res.status(404);
-    return res.send("id is required")
+    return res.send("user is required")
 }
   cart.save((err,doc)=>{
        if(err){
@@ -35,8 +35,8 @@ if(!req.body.id){
         
     });
 });
-cartRouter.use('/cart/:cartId', (req, res, next) => {
-Cart.findById(req.params.cartId, (err, foundCart) => {
+cartRouter.use('/cart/:cartUser', (req, res, next) => {
+Cart.findById(req.params.user, (err, foundCart) => {
         if (err) {
             return res.send(`You have an error ${err}`);
         }
@@ -48,7 +48,7 @@ Cart.findById(req.params.cartId, (err, foundCart) => {
     })
 });
 
-cartRouter.route('/cart/:cartId')
+cartRouter.route('/cart/:cartUser')
     .get((req, res) =>{ 
         const returnCart = req.foundCart.toJSON();
    
@@ -60,7 +60,7 @@ cartRouter.route('/cart/:cartId')
         const {
             foundCart
         } = req;
-       foundCart.id=req.body.id
+       foundCart.id=req.body.user;
         foundCart.title = req.body.title;
         foundCart.price = req.body.price;
         foundCart.category = req.body.category;
