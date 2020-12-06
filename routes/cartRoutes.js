@@ -33,7 +33,13 @@ if(!req.body.user){
            return res.json(foundCart)
         }
         
-    });
+    })
+.delete((req,res)=>{
+   Cart.deleteMany({},(err)=>{
+       if(!err){
+          return res.send("successfully deleted your database") 
+       }
+   })
 });
 cartRouter.use('/cart/:cartUser', (req, res, next) => {
 Cart.findById(req.params.user, (err, foundCart) => {
